@@ -18,7 +18,7 @@ public class ItemCatService {
 	 * 
 	 * @return
 	 */
-	public List< ItemCat> queryItemCat(Long parentId) {
+	public List< ItemCat> queryItemCatByParentId(Long parentId) {
 
 		ItemCat record = new ItemCat();
 		record.setParentId(parentId);
