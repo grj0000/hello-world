@@ -76,8 +76,8 @@ var TT = TAOTAO = {
         		}
         	}
         	$(e).click(function(){
-        		var form = $(this).parentsUntil("form").parent("form");
-        		KindEditor.editor(TT.kingEditorParams).loadPlugin('multiimage',function(){
+        		var form = $(this).parentsUntil("form").parent("form");//拿到这个class="picFileUpload"链接所在的form表单
+        		KindEditor.editor(TT.kingEditorParams).loadPlugin('multiimage',function(){//TT.kingEditorParams为上传参数，multiimage指定多图片上传
         			var editor = this;
         			editor.plugin.multiImageDialog({
 						clickFn : function(urlList) {
@@ -107,7 +107,7 @@ var TT = TAOTAO = {
     		}
     		_ele.unbind('click').click(function(){
     			$("<div>").css({padding:"5px"}).html("<ul>")
-    			.window({
+    			.window({//$("<div>")是新增一个div的意思，$("div")是选择一个div
     				width:'500',
     			    height:"450",
     			    modal:true,
@@ -121,10 +121,10 @@ var TT = TAOTAO = {
     			    		animate:true,
     			    		method:"GET",
     			    		onClick : function(node){
-    			    			if($(this).tree("isLeaf",node.target)){
+    			    			if($(this).tree("isLeaf",node.target)){//如果这个node是叶子节点
     			    				// 填写到cid中
-    			    				_ele.parent().find("[name=cid]").val(node.id);
-    			    				_ele.next().text(node.text).attr("cid",node.id);
+    			    				_ele.parent().find("[name=cid]").val(node.id);//实际上是传给了input元素
+    			    				_ele.next().text(node.text).attr("cid",node.id);//
     			    				$(_win).window('close');
     			    				if(data && data.fun){
     			    					data.fun.call(this,node);
