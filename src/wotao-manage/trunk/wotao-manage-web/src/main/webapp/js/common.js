@@ -97,6 +97,7 @@ var TT = TAOTAO = {
     
     // 初始化选择类目组件
     initItemCat : function(data){
+    	//遍历，i是索引，e是$(".selectItemCat")的每一个元素
     	$(".selectItemCat").each(function(i,e){
     		var _ele = $(e);
     		if(data && data.cid){
@@ -116,8 +117,9 @@ var TT = TAOTAO = {
     			    onOpen : function(){
     			    	var _win = this;
     			    	$("ul",_win).tree({
-    			    		url:'/rest/item/cat/list',
+    			    		url:'/rest/item/cat',
     			    		animate:true,
+    			    		method:GET,
     			    		onClick : function(node){
     			    			if($(this).tree("isLeaf",node.target)){
     			    				// 填写到cid中
