@@ -69,5 +69,9 @@ public class ItemCat extends BasePojo {
     public void setIsParent(Boolean isParent) {
         this.isParent = isParent;
     }
+    
+    public String getText() {
+        return this.getName();
+    }
 
 }
