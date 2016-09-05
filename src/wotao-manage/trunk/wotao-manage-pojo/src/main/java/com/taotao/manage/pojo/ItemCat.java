@@ -73,5 +73,9 @@ public class ItemCat extends BasePojo {
     public String getText() {
         return this.getName();
     }
+    
+    public String getState() {
+        return this.getIsParent() ? "closed":"open";
+    }
 
 }
