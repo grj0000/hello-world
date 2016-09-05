@@ -119,7 +119,7 @@ var TT = TAOTAO = {
     			    	$("ul",_win).tree({
     			    		url:'/rest/item/cat',
     			    		animate:true,
-    			    		method:GET,
+    			    		method:"GET",
     			    		onClick : function(node){
     			    			if($(this).tree("isLeaf",node.target)){
     			    				// 填写到cid中
