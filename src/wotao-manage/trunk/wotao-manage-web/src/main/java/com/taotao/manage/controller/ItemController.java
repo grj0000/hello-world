@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.pagehelper.PageInfo;
+import com.taotao.common.bean.EasyUIResult;
 import com.taotao.manage.pojo.Item;
 import com.taotao.manage.pojo.ItemDesc;
 import com.taotao.manage.service.ItemDescService;
@@ -39,6 +41,29 @@ public class ItemController {
         }
         // 出错 500
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<EasyUIResult> queryItemList(
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "rows", defaultValue = "30") Integer rows) {
+        try {
+            if (page<1||rows<1) {
+                // 响应400
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+
+            // 保存商品的基本数据
+            PageInfo<Item> pageInfo = this.itemService.queryItemList(page,rows);
+
+            EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(), pageInfo.getList());
+            // 成功 200
+            return ResponseEntity.status(HttpStatus.OK).body(easyUIResult );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 出错 500
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 
 }
