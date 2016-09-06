@@ -102,6 +102,7 @@ var TT = TAOTAO = {
     	$(".selectItemCat").each(function(i,e){
     		var _ele = $(e);
     		if(data && data.cid){
+//    			alert(JSON.stringify(data));  
     			_ele.after("<span style='margin-left:10px;'>"+data.cid+"</span>");
     		}else{
     			_ele.after("<span style='margin-left:10px;'></span>");
