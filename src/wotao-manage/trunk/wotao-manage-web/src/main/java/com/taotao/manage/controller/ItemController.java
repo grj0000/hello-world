@@ -21,9 +21,6 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
-    @Autowired
-    private ItemDescService itemDescService;
-
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> saveItem(Item item, @RequestParam("desc") String desc) {
         try {
@@ -32,19 +29,8 @@ public class ItemController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
 
-            // 设置初始数据
-            item.setStatus(1);
-
-            item.setId(null);// 强制设置id为null
-
             // 保存商品的基本数据
-            this.itemService.save(item);
-
-            ItemDesc itemDesc = new ItemDesc();
-            itemDesc.setItemId(item.getId());
-            itemDesc.setItemDesc(desc);
-            // 保存描述数据
-            this.itemDescService.save(itemDesc);
+            this.itemService.save(item, desc);
 
             // 成功 201
             return ResponseEntity.status(HttpStatus.CREATED).build();
