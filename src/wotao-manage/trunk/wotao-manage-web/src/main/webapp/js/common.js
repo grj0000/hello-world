@@ -84,7 +84,8 @@ var TT = TAOTAO = {
 							var imgArray = [];
 							KindEditor.each(urlList, function(i, data) {
 								imgArray.push(data.url);
-								form.find(".pics ul").append("<li><a href='"+data.url+"' target='_blank'><img src='"+data.url+"' width='80' height='50' /></a></li>");
+//								form.find(".pics ul").append("<li><a href='"+data.url+"' target='_blank'><img src='"+data.url+"' width='80' height='50' /></a></li>");
+								form.find(".pics ul").append("<li><a href='"+data.url+"' target='_blank' class='aaa'>看大图</a><img src='"+data.url+"' width='80' height='50' /></li>");
 							});
 							form.find("[name=image]").val(imgArray.join(","));
 							editor.hideDialog();
