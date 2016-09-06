@@ -54,6 +54,7 @@ var TT = TAOTAO = {
     },
     
     init : function(data){
+    	//alert(JSON.stringify(data));  此处加入这句会显示{}，说明data是返回来的值。
     	this.initPicUpload(data);
     	this.initItemCat(data);
     },
