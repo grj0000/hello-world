@@ -127,6 +127,9 @@ var TT = TAOTAO = {
     			    				_ele.next().text(node.text).attr("cid",node.id);//是给_ele.next()这个对象赋值为node.text
     			    				$(_win).window('close');
     			    				if(data && data.fun){
+    			    					//通过.call执行传入data的function方法
+    			    					//第一个参数必须一般为this，指定this后面的参数为this对象的参数。下句的意思就是调用fun函数
+    			    					//把this.node传入进去。
     			    					data.fun.call(this,node);
     			    				}
     			    			}
