@@ -124,7 +124,7 @@ var TT = TAOTAO = {
     			    			if($(this).tree("isLeaf",node.target)){//如果这个node是叶子节点
     			    				// 填写到cid中
     			    				_ele.parent().find("[name=cid]").val(node.id);//实际上是传给了input元素
-    			    				_ele.next().text(node.text).attr("cid",node.id);//
+    			    				_ele.next().text(node.text).attr("cid",node.id);//是给_ele.next()这个对象赋值为node.text
     			    				$(_win).window('close');
     			    				if(data && data.fun){
     			    					data.fun.call(this,node);
