@@ -25,7 +25,10 @@ public class ItemCatController {
     public ResponseEntity<List<ItemCat>> queryItemCatListByParentId(
             @RequestParam(value = "id", defaultValue = "0") Long parentId) {
         try {
-            List<ItemCat> list = this.itemCatService.queryItemCatByParentId(parentId);
+            
+            ItemCat record = new ItemCat();
+            record.setParentId(parentId);;
+            List<ItemCat> list = this.itemCatService.queryListByWhere(record );
             if (null == list || list.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             }
