@@ -77,7 +77,7 @@
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		//处理商品的价格的单位，将元转化为分
+		//处理商品的价格的单位，将元转化为分,eval(string)是将字符串转为数字然后乘以100
 		$("#itemAddForm [name=price]").val(eval($("#itemAddForm [name=priceView]").val()) * 100);
 		//将编辑器中的内容同步到隐藏多行文本中
 		itemAddEditor.sync();
