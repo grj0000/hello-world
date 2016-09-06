@@ -11,7 +11,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.taotao.manage.pojo.BasePojo;
 
-public abstract class BaseService<T extends BasePojo> {
+public class BaseService<T extends BasePojo> {
     
     @Autowired
     private Mapper<T> mapper;
