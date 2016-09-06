@@ -95,6 +95,7 @@
         			TAOTAO.init({
         				"pics" : data.image,
         				"cid" : data.cid,
+        				"title":data.title,
         				fun:function(node){
         					TAOTAO.changeItemParam(node, "itemeEditForm");
         				}
