@@ -74,5 +74,30 @@ public class ItemController {
         // 出错 500
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
+    
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateItem(Item item, @RequestParam("desc") String desc) {
+
+        try {
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("修改商品，item ={}，desc={}", item, desc);
+            }
+            if (StringUtils.isEmpty(item.getTitle())) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+
+            this.itemService.updateItem(item, desc);
+
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("修改商品成功，itemId ={}", item.getId());
+            }
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("修改商品失败，title=" + item.getTitle() + "，cid=" + item.getCid(), e);
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
 
 }
