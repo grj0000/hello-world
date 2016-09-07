@@ -59,7 +59,7 @@
         			//回显数据
         			alert("回显数据");
         			var data = $("#itemList").datagrid("getSelections")[0];
-        			data.priceView = TAOTAO.formatPrice(data.price);
+        			data.priceView = TAOTAO.formatPrice(data.price);//给data添加一个priceView属性，并把data.price的值格式化以后赋给priceView
         			$("#itemeEditForm").form("load",data);//把选中的行的数据data加载（"load"）到item-edit.jsp页面的表单中
         			
         			// 加载商品描述
