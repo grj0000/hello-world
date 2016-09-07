@@ -70,7 +70,7 @@ var TT = TAOTAO = {
     	this.initItemCat(data);
     },
     // 初始化图片上传组件
-    initPicUpload : function(data){
+    initPicUpload : function(data){//data由
     	$(".picFileUpload").each(function(i,e){
     		var _ele = $(e);
     		_ele.siblings("div.pics").remove();
