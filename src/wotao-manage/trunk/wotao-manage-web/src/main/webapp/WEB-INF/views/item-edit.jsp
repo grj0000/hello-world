@@ -104,7 +104,7 @@
 		$.ajax({
 		   type: "PUT",
 		   url: "/rest/item",
-		   data: $("#itemeEditForm").serialize(),
+		   data: $("#itemeEditForm").serialize(),//把表单数据序列化成key=value&key=value的形式
 		   success: function(msg){
 			   $.messager.alert('提示','修改商品成功!','info',function(){
 					$("#itemEditWindow").window('close');
