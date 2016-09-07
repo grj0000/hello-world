@@ -60,7 +60,7 @@
         			alert("回显数据");
         			var data = $("#itemList").datagrid("getSelections")[0];
         			data.priceView = TAOTAO.formatPrice(data.price);
-        			$("#itemeEditForm").form("load",data);
+        			$("#itemeEditForm").form("load",data);//把选中的行的数据data加载（"load"）到item-edit.jsp页面的表单中
         			
         			// 加载商品描述
         			$.getJSON('/rest/item/desc/'+data.id,function(_data){
