@@ -105,14 +105,16 @@
 		   type: "PUT",
 		   url: "/rest/item",
 		   data: $("#itemeEditForm").serialize(),//把表单数据序列化成key=value&key=value形式
-		   success: function(msg){
-			   $.messager.alert('提示','修改商品成功!','info',function(){
-					$("#itemEditWindow").window('close');
-					$("#itemList").datagrid("reload");
-				});
-		   },
-		   error: function(){
-			   $.messager.alert('提示','修改商品失败!');
+		   statusCode:{
+			   204:function(){
+				   $.messager.alert('提示','修改商品成功!','info',function(){
+						$("#itemEditWindow").window('close');
+						$("#itemList").datagrid("reload");
+					});
+			   },
+			   500:function(){
+				   $.messager.alert('提示','修改商品失败!');
+			   }
 		   }
 		});
 	}
