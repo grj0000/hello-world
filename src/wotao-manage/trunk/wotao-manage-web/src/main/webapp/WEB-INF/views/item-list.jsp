@@ -63,8 +63,8 @@
         			$("#itemeEditForm").form("load",data);//把选中的行的数据data加载（"load"）到item-edit.jsp页面的表单中
         			
         			// 加载商品描述
-        			$.getJSON('/rest/item/desc/'+data.id,function(_data){
-        				itemEditEditor.html(_data.itemDesc);
+        			$.getJSON('/rest/item/desc/'+data.id,function(_data){//加载完'/rest/item/desc/'+data.id页面的数据以后，执行function
+        				itemEditEditor.html(_data.itemDesc);//把'/rest/item/desc/'+data.id页面返回的数据写入到富文本编辑器中
         			});
         			
         			//加载商品规格
