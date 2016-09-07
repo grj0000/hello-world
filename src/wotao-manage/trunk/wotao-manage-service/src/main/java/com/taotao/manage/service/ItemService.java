@@ -48,4 +48,17 @@ public class ItemService extends BaseService<Item>{
         return new PageInfo<Item>(list);
     }
 
+        public void updateItem(Item item, String desc) {
+            
+            item.setCreated(null);
+            item.setStatus(null);
+            this.updateSelective(item);
+            
+            ItemDesc itemDesc = new ItemDesc();
+            itemDesc.setItemId(item.getId());
+            itemDesc.setItemDesc(desc);
+            this.itemDescService.updateSelective(itemDesc);
+            
+    }
+
 }
