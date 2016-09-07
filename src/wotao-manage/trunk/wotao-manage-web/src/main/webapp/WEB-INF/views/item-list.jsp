@@ -21,15 +21,15 @@
 </div>
 <script>
 
-    function getSelectionsIds(){
-    	var itemList = $("#itemList");
-    	var sels = itemList.datagrid("getSelections");
+    function getSelectionsIds(){//用于将所有选中行的id用逗号拼接成一个字符串
+    	var itemList = $("#itemList");//id="itemList"的表单是显示所有商品的表单
+    	var sels = itemList.datagrid("getSelections");//所有商品列表中勾选中的行
     	var ids = [];
-    	for(var i in sels){
-    		ids.push(sels[i].id);
+    	for(var i in sels){//i是下标值，遍历每一个选中的行
+    		ids.push(sels[i].id);//把选中行的id压入数组，<th data-options="field:'id',width:60">商品ID</th>
     	}
-    	ids = ids.join(",");
-    	return ids;
+    	ids = ids.join(",");//把数组中各元素用逗号拼接成一个字符串
+    	return ids;//返回该字符串
     }
     
     var toolbar = [{
