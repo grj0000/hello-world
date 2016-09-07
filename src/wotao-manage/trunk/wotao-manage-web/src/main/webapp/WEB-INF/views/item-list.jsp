@@ -55,7 +55,7 @@
         	}
         	alert("打开编辑窗口");
         	$("#itemEditWindow").window({
-        		onLoad :function(){
+        		onLoad :function(){//后面.window("open");以后会加载item-edit.jsp页面，页面加载onLoad完以后执行该方法
         			//回显数据
         			alert("回显数据");
         			var data = $("#itemList").datagrid("getSelections")[0];
