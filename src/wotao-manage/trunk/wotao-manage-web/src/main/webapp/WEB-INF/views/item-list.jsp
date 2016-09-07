@@ -29,6 +29,8 @@
     		ids.push(sels[i].id);//把选中行的id压入数组，<th data-options="field:'id',width:60">商品ID</th>
     	}
     	ids = ids.join(",");//把数组中各元素用逗号拼接成一个字符串
+    	//alert(JSON.stringify(ids));  //如果只有一个id为50的元素时，拼接的结果是“50”，没有逗号，如果有两个元素，则形式为“50,49”
+    	//alert(ids.indexOf(','));  //索引以0开始，“50,49”中逗号所在索引为2
     	return ids;//返回该字符串
     }
     
@@ -41,7 +43,7 @@
     },{
         text:'编辑',
         iconCls:'icon-edit',
-        handler:function(){
+        handler:function(){//点击编辑按钮后判断商品列表中选中的行数是不是一行
         	var ids = getSelectionsIds();
         	if(ids.length == 0){
         		$.messager.alert('提示','必须选择一个商品才能编辑!');
