@@ -58,6 +58,15 @@ var TT = TAOTAO = {
     	alert("data="+JSON.stringify(data));
     	//alert(JSON.stringify(data));  此处加入这句会显示{}，说明data是返回来的值。
     	this.initPicUpload(data);
+    	//data就是{
+		//	"pics" : data.image,
+		//	"cid" : data.cid,
+		//	"title":data.title,
+		//	fun:function(node){
+		//		alert("fun:function(node){");
+		//		TAOTAO.changeItemParam(node, "itemeEditForm");
+		//	}
+		//}
     	this.initItemCat(data);
     },
     // 初始化图片上传组件
