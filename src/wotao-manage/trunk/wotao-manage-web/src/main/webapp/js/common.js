@@ -54,6 +54,8 @@ var TT = TAOTAO = {
     },
     
     init : function(data){
+    	alert("TAOTAO.init进入");
+    	alert("data="+JSON.stringify(data));
     	//alert(JSON.stringify(data));  此处加入这句会显示{}，说明data是返回来的值。
     	this.initPicUpload(data);
     	this.initItemCat(data);
@@ -68,14 +70,16 @@ var TT = TAOTAO = {
         			<ul></ul>\
         		</div>');
     		// 回显图片
+    		alert("回显data="+JSON.stringify(data));
         	if(data && data.pics){
         		var imgs = data.pics.split(",");
         		for(var i in imgs){
         			if($.trim(imgs[i]).length > 0){
-        				_ele.siblings(".pics").find("ul").append("<li><a href='"+imgs[i]+"' target='_blank'><img src='"+imgs[i]+"' width='80' height='50' /></a></li>");
+        				_ele.siblings(".pics").find("ul").append("<li><a href='"+imgs[i]+"' target='_blank' class='aaa'>看大图</a><img src='"+imgs[i]+"' width='80' height='50' /></li>");
         			}
         		}
         	}
+        	alert("回显完毕data="+JSON.stringify(data));
         	$(e).click(function(){
         		var form = $(this).parentsUntil("form").parent("form");//拿到这个class="picFileUpload"链接所在的form表单
         		KindEditor.editor(TT.kingEditorParams).loadPlugin('multiimage',function(){//TT.kingEditorParams为上传参数，multiimage指定多图片上传
@@ -100,6 +104,7 @@ var TT = TAOTAO = {
     // 初始化选择类目组件
     initItemCat : function(data){
     	//遍历，i是索引，e是$(".selectItemCat")的每一个元素
+    	alert("初始化类目组件，data="+JSON.stringify(data));
     	$(".selectItemCat").each(function(i,e){
     		var _ele = $(e);
     		if(data && data.cid){
