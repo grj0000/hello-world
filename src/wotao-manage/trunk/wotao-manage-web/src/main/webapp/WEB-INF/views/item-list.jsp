@@ -53,10 +53,11 @@
         		$.messager.alert('提示','只能选择一个商品!');
         		return ;
         	}
-        	
+        	alert("打开编辑窗口");
         	$("#itemEditWindow").window({
         		onLoad :function(){
         			//回显数据
+        			alert("回显数据");
         			var data = $("#itemList").datagrid("getSelections")[0];
         			data.priceView = TAOTAO.formatPrice(data.price);
         			$("#itemeEditForm").form("load",data);
@@ -93,12 +94,13 @@
         					 $("#itemeEditForm .params td").eq(1).html(html);
         				}
         			});
-        			
+        			alert("TAOTAO.init开始");
         			TAOTAO.init({
         				"pics" : data.image,
         				"cid" : data.cid,
         				"title":data.title,
         				fun:function(node){
+        					alert("fun:function(node){");
         					TAOTAO.changeItemParam(node, "itemeEditForm");
         				}
         			});
