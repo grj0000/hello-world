@@ -16,6 +16,7 @@
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
 			</dependency>
+			<!-- 自定义消息转换器要继承的类MappingJackson2HttpMessageConverter所在的包 -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-web</artifactId>
