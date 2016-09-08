@@ -9,12 +9,15 @@
 
 	<mvc:annotation-driven>
 		<mvc:message-converters>
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-				<constructor-arg index="0" value="UTF-8"></constructor-arg>
+			<!-- <bean class="org.springframework.http.converter.StringHttpMessageConverter"> 
+				<constructor-arg index="0" value="UTF-8"></constructor-arg> </bean> -->
+			<bean
+				class="com.taotao.common.spring.exetend.converter.json.CallbackMappingJackson2HttpMessageConverter">
+				<property name="callbackName" value="callback"/>
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-	
+
 	<context:component-scan base-package="com.taotao.manage.controller" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
