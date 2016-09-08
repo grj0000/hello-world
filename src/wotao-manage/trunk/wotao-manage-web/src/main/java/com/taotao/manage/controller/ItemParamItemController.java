@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.taotao.manage.pojo.ItemParamItem;
 import com.taotao.manage.service.ItemParamItemService;
 
-
-@Controller
 @RequestMapping("item/param/item")
+@Controller
 public class ItemParamItemController {
     
     @Autowired
