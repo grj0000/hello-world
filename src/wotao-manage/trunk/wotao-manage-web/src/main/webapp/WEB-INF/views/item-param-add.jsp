@@ -59,9 +59,9 @@
 					statusCode : {
 						200 : function() {
 							$.messager.alert("提示", "该类目已经添加，请选择其他类目。",
-									undefined, function() {
+									undefined, function() {//此处把undefined改成error、question、info、warning都会直接执行$(".addGroupTr").show();
 										$("#itemParamAddTable .selectItemCat")
-												.click();
+												.click();//根本不执行$.messager.alert的对话框，不知为何？测试条件当然是该类目有参数模板的情况
 									});
 							return;
 						},
