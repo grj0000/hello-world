@@ -26,7 +26,7 @@ public class ItemController {
     private ItemService itemService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> saveItem(Item item, @RequestParam("desc") String desc) {
+    public ResponseEntity<Void> saveItem(Item item, @RequestParam("desc") String desc, @RequestParam("itemParams") String itemParams) {
         try {
             if(LOGGER.isInfoEnabled()){
                 LOGGER.info("新增商品, item={}, desc={}", item, desc);
@@ -38,7 +38,7 @@ public class ItemController {
             }
 
             // 保存商品的基本数据
-            this.itemService.save(item, desc);
+            this.itemService.save(item, desc,itemParams);
             if(LOGGER.isInfoEnabled()){
                 LOGGER.info("新增商品成功, itemId={}", item.getId());
             }
