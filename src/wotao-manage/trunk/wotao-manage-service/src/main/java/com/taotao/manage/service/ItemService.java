@@ -12,6 +12,8 @@ import com.taotao.common.bean.EasyUIResult;
 import com.taotao.manage.mapper.ItemMapper;
 import com.taotao.manage.pojo.Item;
 import com.taotao.manage.pojo.ItemDesc;
+import com.taotao.manage.pojo.ItemParam;
+import com.taotao.manage.pojo.ItemParamItem;
 
 @Service
 public class ItemService extends BaseService<Item>{
@@ -20,9 +22,12 @@ public class ItemService extends BaseService<Item>{
     private ItemDescService itemDescService;
     
     @Autowired
+    private ItemParamItemService itemParamItemService;
+    
+    @Autowired
     private ItemMapper itemMapper;
     
-    public void save(Item item, String desc) {
+    public void save(Item item, String desc, String itemParams) {
 
         // 设置初始数据
         item.setStatus(1);
@@ -35,6 +40,13 @@ public class ItemService extends BaseService<Item>{
         itemDesc.setItemDesc(desc);
         // 保存描述数据
         this.itemDescService.save(itemDesc);
+        
+        ItemParamItem itemParamItem = new ItemParamItem();
+        itemParamItem.setId(null);
+        itemParamItem.setItemId(item.getId());
+        itemParamItem.setParamData(itemParams);
+        
+        this.itemParamItemService.save(itemParamItem);
     }
 
     public PageInfo<Item> queryItemList(Integer page, Integer rows) {
