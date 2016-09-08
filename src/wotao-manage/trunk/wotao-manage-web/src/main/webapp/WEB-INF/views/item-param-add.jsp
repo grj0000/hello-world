@@ -76,7 +76,7 @@
 			}
 		});
 
-		$(".addGroup").click(function() {
+		$(".addGroup").click(function() {//点击添加分组按钮的逻辑
 			var temple = $(".itemParamAddTemplate li").eq(0).clone();
 			$(this).parent().parent().append(temple);
 			temple.find(".addParam").click(function() {
@@ -119,14 +119,25 @@
 					});
 					var url = "/rest/item/param/"
 							+ $("#itemParamAddTable [name=cid]").val();
-					$.post(url, {
-						"paramData" : JSON.stringify(params)
-					}, function(data) {
-						$.messager.alert('提示', '新增商品规格成功!', undefined,
-								function() {
-									$(".panel-tool-close").click();
-									$("#itemParamList").datagrid("reload");
-								});
+					$.ajax({
+						type : "POST",
+						url : url,
+						data: {"paramData" : JSON.stringify(params)},
+						statusCode : {
+							201 : function() {
+								$.messager.alert('提示', '新增商品规格模板成功!', undefined,
+										function() {
+											$(".panel-tool-close").click();
+											$("#itemParamList").datagrid("reload");
+										});
+							},
+							400 : function() {
+								$.messager.alert('提示', '提交的参数不合法!');
+							},
+							500 : function() {
+								$.messager.alert('提示', '新增商品规格模板失败!');
+							}
+						}
 					});
 				});
 	});
