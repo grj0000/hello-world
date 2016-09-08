@@ -60,7 +60,7 @@ public class ItemService extends BaseService<Item>{
         return new PageInfo<Item>(list);
     }
 
-        public void updateItem(Item item, String desc) {
+        public void updateItem(Item item, String desc, String itemParams) {
             
             item.setCreated(null);
             item.setStatus(null);
@@ -71,6 +71,7 @@ public class ItemService extends BaseService<Item>{
             itemDesc.setItemDesc(desc);
             this.itemDescService.updateSelective(itemDesc);
             
+            this.itemParamItemService.updateItemParamItem(item.getId(),itemParams);
     }
 
 }
