@@ -61,8 +61,8 @@ function menuHandler(item){
                 parentId : node.id
             }]//parent是父节点属性名，值根据选中的节点定，data是节点的属性
         }); 
-		var _node = tree.tree('find',0);
-		tree.tree("select",_node.target).tree('beginEdit',_node.target);
+		var _node = tree.tree('find',0);//找到新增的节点
+		tree.tree("select",_node.target).tree('beginEdit',_node.target);//选中新增的节点，并对其进行编辑
 	}else if(item.name === "rename"){
 		tree.tree('beginEdit',node.target);
 	}else if(item.name === "delete"){
