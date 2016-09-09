@@ -33,7 +33,7 @@ $(function(){
 			if(tree.tree("isLeaf",node.target)){
 				datagrid.datagrid('reload', {
 					categoryId :node.id
-		        });
+		        });//如果是叶子节点，则reload重新加载内容列表的datagrid，并把叶子节点的id当作categoryId参数传入
 			}
 		}
 	});
