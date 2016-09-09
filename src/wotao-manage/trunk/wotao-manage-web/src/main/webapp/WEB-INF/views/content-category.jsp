@@ -16,7 +16,7 @@ $(function(){
 		animate: true,
 		method : "GET",
 		onContextMenu: function(e,node){
-            e.preventDefault();//右键调用的onContextMenu上函数，此句时屏蔽浏览器默认菜单的意思，使得右键点击内容分类时显示添加删除和重命名，而不是浏览器的右键菜单，返回，重新加载，打印……
+            e.preventDefault();//右键执行onContextMenu事件，此句时屏蔽浏览器默认菜单的意思，使得右键点击内容分类时显示添加删除和重命名，而不是浏览器的右键菜单，返回，重新加载，打印……
             $(this).tree('select',node.target);//选中当前节点
             $('#contentCategoryMenu').menu('show',{
                 left: e.pageX,
@@ -24,14 +24,15 @@ $(function(){
             });//e为点击事件，就是点右键时鼠标光标的位置
         },
         onAfterEdit : function(node){
-        	var _tree = $(this);
+        	var _tree = $(this);//在右键菜单处理完后执行此 onAfterEdit事件指定的方法
         	if(node.id == 0){
         		// 新增节点
         		$.post("/rest/content/category",{parentId:node.parentId,name:node.text},function(data){
         			_tree.tree("update",{
         				target : node.target,
         				id : data.id
-        			});
+        			});//数据库新增节点成功以后，就是$.post成功以后更新，update方法包括的参数'param'参数包含以下属性：
+        			//target(DOM对象，将被更新的目标节点)，id，text，iconCls，checked等
         		});
         	}else{
         		$.ajax({
