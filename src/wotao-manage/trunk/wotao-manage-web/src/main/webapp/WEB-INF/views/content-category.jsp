@@ -16,12 +16,12 @@ $(function(){
 		animate: true,
 		method : "GET",
 		onContextMenu: function(e,node){
-            e.preventDefault();
-            $(this).tree('select',node.target);
+            e.preventDefault();//右键调用的onContextMenu上函数，此句时屏蔽浏览器默认菜单的意思，使得右键点击内容分类时显示添加删除和重命名，而不是浏览器的右键菜单，返回，重新加载，打印……
+            $(this).tree('select',node.target);//选中当前节点
             $('#contentCategoryMenu').menu('show',{
                 left: e.pageX,
                 top: e.pageY
-            });
+            });//e为点击事件，就是点右键时鼠标光标的位置
         },
         onAfterEdit : function(node){
         	var _tree = $(this);
