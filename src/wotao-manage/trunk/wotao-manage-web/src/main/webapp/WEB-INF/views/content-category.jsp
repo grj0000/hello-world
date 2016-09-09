@@ -59,7 +59,7 @@ function menuHandler(item){
                 text: '新建分类',
                 id : 0,
                 parentId : node.id
-            }]
+            }]//parent是父节点属性名，值根据选中的节点定，data是节点的属性
         }); 
 		var _node = tree.tree('find',0);
 		tree.tree("select",_node.target).tree('beginEdit',_node.target);
