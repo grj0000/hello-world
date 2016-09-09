@@ -74,4 +74,12 @@ public class ContentCategory extends BasePojo {
         this.isParent = isParent;
     }
 
+    // 扩展字段，用于EasyUI中tree结构
+    public String getText() {
+        return getName();
+    }
+  // 扩展字段，用于EasyUI中tree结构
+    public String getState() {
+        return getIsParent() ? "closed" : "open";
+    }
 }
