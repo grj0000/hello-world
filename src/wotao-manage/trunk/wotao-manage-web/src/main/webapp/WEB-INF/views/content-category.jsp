@@ -75,7 +75,7 @@ function menuHandler(item){
      			   data : {parentId:node.parentId,id:node.id,"_method":"DELETE"},
      			   success: function(msg){
      				   //$.messager.alert('提示','新增商品成功!');
-     				  tree.tree("remove",node.target);
+     				  tree.tree("remove",node.target);//type: "POST"的原因是DELETE请求无法传递除id以外的参数，所以用POST，此外还要在data中传递"_method":"DELETE"
      			   },
      			   error: function(){
      				   $.messager.alert('提示','删除失败!');
