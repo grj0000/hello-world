@@ -225,7 +225,7 @@
 				</div>
 			</div>
 			<div class="mc hide" data-widget="tab-content" id="product-detail-2">
-				${itemParam}
+				${itemParam}<!-- 规格参数 -->
 			</div>
 				<div class="mc  hide" data-widget="tab-content" id="product-detail-3">
 					<div class="item-detail">液晶电视×1、底座×1、遥控器×1、使用说明书×1、电源线×1</div>
