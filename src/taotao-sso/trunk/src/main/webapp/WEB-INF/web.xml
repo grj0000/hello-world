@@ -45,6 +45,7 @@
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+	<!-- springmvc的规定：springmvc中如果请求以html结尾，那么就不会返回json数据 -->
 		<servlet-name>taotao-sso</servlet-name>
 		<url-pattern>/service/*</url-pattern>
 	</servlet-mapping>
