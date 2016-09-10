@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.taotao.sso.pojo.User;
 import com.taotao.sso.service.UserService;
 
 @RequestMapping("user")
@@ -66,10 +67,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 
-//    @RequestMapping(value = "doRegister", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Map<String, Object> doRegister(@Valid User user, BindingResult bindingResult) {
-//        Map<String, Object> result = new HashMap<String, Object>();
+    @RequestMapping(value = "doRegister", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> doRegister(@Valid User user, BindingResult bindingResult) {
+        Map<String, Object> result = new HashMap<String, Object>();
 //        if (bindingResult.hasErrors()) {
 //            // 校验有错误
 //            List<String> msgs = new ArrayList<String>();
@@ -82,18 +83,18 @@ public class UserController {
 //            result.put("data", StringUtils.join(msgs, '|'));
 //            return result;
 //        }
-//
-//        Boolean bool = this.userService.saveUser(user);
-//        if (bool) {
-//            // 注册成功
-//            result.put("status", "200");
-//        } else {
-//            result.put("status", "300");
-//            result.put("data", " 是的！");
-//        }
-//        return result;
-//    }
-//
+
+        Boolean bool = this.userService.saveUser(user);
+        if (bool) {
+            // 注册成功
+            result.put("status", "200");
+        } else {
+            result.put("status", "300");
+            result.put("data", " 是的！");
+        }
+        return result;
+    }
+
 //    @RequestMapping(value = "doLogin", method = RequestMethod.POST)
 //    @ResponseBody
 //    public Map<String, Object> doLogin(@RequestParam("username") String username,
