@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.taotao.common.utils.CookieUtils;
 import com.taotao.sso.pojo.User;
 import com.taotao.sso.service.UserService;
 
@@ -95,30 +96,31 @@ public class UserController {
         return result;
     }
 
-//    @RequestMapping(value = "doLogin", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Map<String, Object> doLogin(@RequestParam("username") String username,
-//            @RequestParam("password") String password, HttpServletRequest request,
-//            HttpServletResponse response) {
-//        Map<String, Object> result = new HashMap<String, Object>();
-//        try {
-//            String token = this.userService.doLogin(username, password);
-//            if (null == token) {
-//                // 登录失败
-//                result.put("status", 400);
-//            } else {
-//                // 登录成功，需要将token写入到cookie中
-//                result.put("status", 200);
-//                CookieUtils.setCookie(request, response, COOKIE_NAME, token);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            // 登录失败
-//            result.put("status", 500);
-//        }
-//        return result;
-//    }
-//    
+    @RequestMapping(value = "doLogin", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> doLogin(@RequestParam("username") String username,
+            @RequestParam("password") String password, HttpServletRequest request,
+            HttpServletResponse response) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            String token = this.userService.doLogin(username, password);
+            if (null == token) {
+                // 登录失败
+                result.put("status", 400);
+            } else {
+                // 登录成功，需要将token写入到cookie中
+                result.put("status", 200);
+//                设置Cookie的值 不设置生效时间默认浏览器关闭即失效,也不编码
+                CookieUtils.setCookie(request, response, COOKIE_NAME, token);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 登录失败
+            result.put("status", 500);
+        }
+        return result;
+    }
+    
 //    @RequestMapping(value = "{token}", method = RequestMethod.GET)
 //    public ResponseEntity<User> queryUserByToken(@PathVariable("token")String token){
 //        try {
