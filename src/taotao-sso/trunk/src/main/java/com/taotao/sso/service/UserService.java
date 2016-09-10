@@ -44,16 +44,16 @@ public class UserService {
         return this.userMapper.selectOne(record) == null;
     }
 
-//    public Boolean saveUser(User user) {
-//        user.setId(null);
-//        user.setCreated(new Date());
-//        user.setUpdated(user.getCreated());
-//
-//        // 密码通过MD5进行加密处理
-//        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
-//
-//        return this.userMapper.insert(user) == 1;
-//    }
+    public Boolean saveUser(User user) {
+        user.setId(null);
+        user.setCreated(new Date());
+        user.setUpdated(user.getCreated());
+
+        // 密码通过MD5进行加密处理
+        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+
+        return this.userMapper.insert(user) == 1;
+    }
 //
 //    public String doLogin(String username, String password) throws Exception {
 //        User record = new User();
