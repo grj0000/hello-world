@@ -58,7 +58,7 @@ public class UserController {
             if (null == bool) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
             }
-            // 为了兼容前端的业务逻辑，做出妥协处理
+            // 为了兼容前端的业务逻辑，做出妥协处理，此处必须加注释
             return ResponseEntity.ok(!bool);
         } catch (Exception e) {
             e.printStackTrace();
