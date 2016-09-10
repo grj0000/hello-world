@@ -5764,7 +5764,7 @@ function cancelAllUsedGiftCards(giftCardType) {
 	 * 提交订单方法
 	 */
 	function submit_Order() {
-		$("#submit_message").hide();
+		$("#submit_message").hide();//把提示信息（“亲爱的用户请不要频繁点击,请稍后重试...”）隐藏掉
 		jQuery.ajax( {
 			type : "POST",
 			dataType : "json",
@@ -5781,7 +5781,7 @@ function cancelAllUsedGiftCards(giftCardType) {
 			error : function(error) {
 				$("#submit_message").html("亲爱的用户请不要频繁点击, 请稍后重试...").show();
 			}
-		});
+		});//cache : false,为强制不缓存，url : "/service/order/submit",提交订单的方法跳转时，因为要传送json数据所以不能用*.html的形式
 	}
 	
 	/**
