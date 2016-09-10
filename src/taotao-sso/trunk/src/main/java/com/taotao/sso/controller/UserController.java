@@ -121,18 +121,18 @@ public class UserController {
         return result;
     }
     
-//    @RequestMapping(value = "{token}", method = RequestMethod.GET)
-//    public ResponseEntity<User> queryUserByToken(@PathVariable("token")String token){
-//        try {
-//            User user = this.userService.queryUserByToken(token);
-//            if(null == user){
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-//            }
-//            return ResponseEntity.ok(user);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-//    }
+    @RequestMapping(value = "{token}", method = RequestMethod.GET)
+    public ResponseEntity<User> queryUserByToken(@PathVariable("token")String token){
+        try {
+            User user = this.userService.queryUserByToken(token);
+            if(null == user){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
 
 }
