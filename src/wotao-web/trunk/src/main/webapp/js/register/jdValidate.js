@@ -597,7 +597,7 @@ function checkPin(option) {
             nameold = pin;
             option.errorEle.html("<em style='color:#999'>检验中……</em>");
             $.ajax({
-            	url : "http://sso.taotao.com/user/check/"+escape(pin)+"/1.html?r=" + Math.random(),
+            	url : "http://sso.taotao.com/service/user/check/"+escape(pin)+"/1?r=" + Math.random(),
             	dataType : "json",
             	success : function(data) {
                     checkpin = data ?"1":"0";
