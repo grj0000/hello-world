@@ -71,18 +71,18 @@ public class UserController {
     @ResponseBody
     public Map<String, Object> doRegister(@Valid User user, BindingResult bindingResult) {
         Map<String, Object> result = new HashMap<String, Object>();
-//        if (bindingResult.hasErrors()) {
-//            // 校验有错误
-//            List<String> msgs = new ArrayList<String>();
-//            List<ObjectError> allErrors = bindingResult.getAllErrors();
-//            for (ObjectError objectError : allErrors) {
-//                String msg = objectError.getDefaultMessage();
-//                msgs.add(msg);
-//            }
-//            result.put("status", "400");
-//            result.put("data", StringUtils.join(msgs, '|'));
-//            return result;
-//        }
+        if (bindingResult.hasErrors()) {
+            // 校验有错误
+            List<String> msgs = new ArrayList<String>();
+            List<ObjectError> allErrors = bindingResult.getAllErrors();
+            for (ObjectError objectError : allErrors) {
+                String msg = objectError.getDefaultMessage();
+                msgs.add(msg);
+            }
+            result.put("status", "400");
+            result.put("data", StringUtils.join(msgs, '|'));
+            return result;
+        }
 
         Boolean bool = this.userService.saveUser(user);
         if (bool) {
