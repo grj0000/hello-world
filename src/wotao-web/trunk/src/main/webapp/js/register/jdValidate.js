@@ -652,7 +652,7 @@ function sendMobileCode() {
     $('#mobileCode').removeClass("highlight2");
     // 检测手机号码是否存在
     $.ajax({
-    	url : "http://sso.taotao.com/user/check/"+mobile+"/2?r=" + Math.random(),
+    	url : "http://sso.taotao.com/service/user/check/"+mobile+"/2?r=" + Math.random(),
     	dataType : "jsonp",
     	success : function(result) {
             if (!result.data) {
