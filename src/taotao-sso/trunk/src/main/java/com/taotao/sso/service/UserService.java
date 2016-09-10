@@ -82,21 +82,21 @@ public class UserService {
 
         return token;
     }
-//
-//    public User queryUserByToken(String token) {
-//        String key = "TOKEN_" + token;
-//        String jsonData = this.redisService.get(key);
-//        if (StringUtils.isEmpty(jsonData)) {
-//            return null;
-//        }
-//        try {
-//            // 刷新用户的生存时间(非常重要)
-//            this.redisService.expire(key, 60 * 30);
-//            return MAPPER.readValue(jsonData, User.class);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+
+    public User queryUserByToken(String token) {
+        String key = "TOKEN_" + token;
+        String jsonData = this.redisService.get(key);
+        if (StringUtils.isEmpty(jsonData)) {
+            return null;
+        }
+        try {
+            // 刷新用户的生存时间(非常重要)
+            this.redisService.expire(key, 60 * 30);
+            return MAPPER.readValue(jsonData, User.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
