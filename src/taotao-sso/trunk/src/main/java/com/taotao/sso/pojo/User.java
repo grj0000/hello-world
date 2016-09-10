@@ -22,7 +22,7 @@ public class User {
     @Length(min = 6, max = 20, message = "用户名的长度必须在6~20位之间!")//用的是hibernate校验框架
     private String username;
 
-    @JsonIgnore//json序列化时忽略该字段
+    @JsonIgnore//json序列化时忽略该字段，这样在token中就不会用密码了
     @Length(min = 6, max = 20, message = "密码的长度必须在6~20位之间!")
     private String password;
 
