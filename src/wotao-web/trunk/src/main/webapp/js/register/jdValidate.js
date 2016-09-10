@@ -600,8 +600,8 @@ function checkPin(option) {
             	url : "http://sso.taotao.com/user/check/"+escape(pin)+"/1.html?r=" + Math.random(),
             	dataType : "json",
             	success : function(data) {
-                    checkpin = data.data?"1":"0";
-                    if (!data.data) {
+                    checkpin = data ?"1":"0";
+                    if (!data) {
                         validateSettings.succeed.run(option);
                         namestate = true;
                     }else {
