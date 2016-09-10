@@ -653,9 +653,9 @@ function sendMobileCode() {
     // 检测手机号码是否存在
     $.ajax({
     	url : "http://sso.taotao.com/service/user/check/"+mobile+"/2?r=" + Math.random(),
-    	dataType : "jsonp",
+    	dataType : "json",
     	success : function(result) {
-            if (!result.data) {
+            if (!result) {
                 $('#phone').removeClass().addClass("text");
                 $("#phone_error").html("");
                 $("#phone_error").hide();
@@ -664,7 +664,7 @@ function sendMobileCode() {
                // sendmCode();
             }
 
-            if (result.data) {
+            if (result) {
                 $('#phone').removeClass().addClass('text highlight3');
                 $("#phone_error").html("手机号已绑定，请更换号码或与原账号解绑");
                 $("#phone_error").removeClass().addClass("cue");
@@ -846,10 +846,10 @@ function sendMobileCode1() {
     
     // 检测手机号码是否存在
     $.ajax({
-    	url : "http://sso.taotao.com/user/check/"+mobile+"/2?r=" + Math.random(),
-    	dataType : "jsonp",
+    	url : "http://sso.taotao.com/service/user/check/"+mobile+"/2?r=" + Math.random(),
+    	dataType : "json",
     	success : function(result) {
-            if (!result.data) {
+            if (!result) {
                 $('#phone1').removeClass().addClass("text");
                 $("#phone1_error").html("");
                 $("#phone1_error").hide();
@@ -858,7 +858,7 @@ function sendMobileCode1() {
                 sendmCode1();
                 return;
             }
-            if (result.data) {
+            if (result) {
                 $('#phone1').removeClass().addClass('text highlight3');
                 $("#phone1_error").html("手机号已绑定，请更换号码或与原账号解绑");
                 $("#phone1_error").removeClass().addClass("cue");
@@ -1261,8 +1261,8 @@ function phoneBlur() {
     $("#state").val("");
     // 检测手机号码是否存在
     $.ajax({
-    	url : "http://sso.taotao.com/user/check/"+mobile+"/2?r=" + Math.random(),
-    	dataType : "jsonp",
+    	url : "http://sso.taotao.com/service/user/check/"+mobile+"/2?r=" + Math.random(),
+    	dataType : "json",
     	success : function(result) {
             mobileResult = result.data ? "1" : "0";
             // if (mobileResult != 2) {
@@ -1272,11 +1272,11 @@ function phoneBlur() {
             // $("#sendMobileCode").removeAttr("disabled");
             // }
             $("#sendMobileCode").removeAttr("disabled");
-            if (!result.data) {
+            if (!result) {
                 mobileOkStyle();
             }
 
-            if (result.data) {
+            if (result) {
                 mobileEngagedStyle();
             }
 
@@ -1329,16 +1329,16 @@ function phoneKeyup() {
     $("#state").val("");
     // 检测手机号码是否存在
     $.ajax({
-    	url : "http://sso.taotao.com/user/check/"+mobile+"/2?r=" + Math.random(),
-    	dataType : "jsonp",
+    	url : "http://sso.taotao.com/service/user/check/"+mobile+"/2?r=" + Math.random(),
+    	dataType : "json",
     	success : function(result) {
             mobileResult = result.data ? "1" : "0";
             $("#sendMobileCode").removeAttr("disabled");
-            if (!result.data) {
+            if (!result) {
                 mobileOkStyle();
             }
 
-            if (result.data) {
+            if (result) {
                 mobileEngagedStyle();
             }
 
