@@ -9,8 +9,7 @@ var TT = TAOTAO = {
 			dataType : "jsonp",
 			type : "GET",
 			success : function(data){
-					var _data = JSON.parse(data);
-					var html =_data.username+"，欢迎来到淘淘！<a href=\"http://www.taotao.com/user/logout.html\" class=\"link-logout\">[退出]</a>";
+					var html =data.username+"，欢迎来到淘淘！<a href=\"http://www.taotao.com/user/logout.html\" class=\"link-logout\">[退出]</a>";
 					$("#loginbar").html(html);
 			}
 		});
