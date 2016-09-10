@@ -108,7 +108,7 @@ public class ApiService implements BeanFactoryAware {
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 		this.beanFactory = beanFactory;
 	}
-	
+	//因为订单系统的接口需要输入json对象，所以需要这个方法
 	 public HttpResult doPostJson(String url, String json) throws IOException {
 	        // 创建http POST请求
 	        HttpPost httpPost = new HttpPost(url);
