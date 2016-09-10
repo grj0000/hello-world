@@ -107,7 +107,7 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.9</version>
 		</dependency>
-		<!-- 数据校验 -->
+		<!--用 hibernate数据校验框架，仅仅和hibernate ORM框架的同名，其实根本没有关系 -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
