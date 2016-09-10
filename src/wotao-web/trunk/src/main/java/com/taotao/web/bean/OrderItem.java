@@ -38,6 +38,7 @@ public class OrderItem {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	//订单系统拷贝过来的类型integer和Long不一致
 	public Long getPrice() {
 		return price;
 	}
