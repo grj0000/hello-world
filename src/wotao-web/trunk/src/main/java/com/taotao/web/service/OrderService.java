@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.taotao.common.httpclient.HttpResult;
 import com.taotao.common.service.ApiService;
 import com.taotao.web.bean.Order;
+import com.taotao.web.bean.User;
 
 @Service
 public class OrderService {
