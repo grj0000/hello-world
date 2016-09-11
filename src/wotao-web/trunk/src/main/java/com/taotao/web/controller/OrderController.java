@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.taotao.web.bean.Item;
+import com.taotao.web.bean.Order;
 import com.taotao.web.service.ItemService;
+import com.taotao.web.service.OrderService;
 
 @RequestMapping("order")
 @Controller
@@ -25,8 +27,8 @@ public class OrderController {
     @Autowired
     private ItemService itemService;
 
-//    @Autowired
-//    private OrderService orderService;
+    @Autowired
+    private OrderService orderService;
 //
 //    @Autowired
 //    private UserService userService;
@@ -39,7 +41,7 @@ public class OrderController {
      * 
      * @return
      */
-    @RequestMapping(value = "{itemId}", method = RequestMethod.GET)
+    @RequestMapping(value = "{itemId}",method = RequestMethod.GET )
     public ModelAndView toOrder(@PathVariable("itemId") Long itemId) {
         ModelAndView mv = new ModelAndView("order");
         Item item = this.itemService.queryByItemId(itemId);
@@ -61,22 +63,22 @@ public class OrderController {
 //        return mv;
 //    }
 //
-//    @RequestMapping(value = "submit", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Map<String, Object> submitOrder(Order order) {
-//        Map<String, Object> result = new HashMap<String, Object>();
-//        String orderId = this.orderService.submitOrder(order);
-//        if (StringUtils.isEmpty(orderId)) {
-//            // 提交订单失败
-//            result.put("status", 300);
-//        } else {
-//            // 提交订单成功
-//            result.put("status", 200);
-//            result.put("data", orderId);
-//        }
-//        return result;
-//    }
-//
+    @RequestMapping( value = "submit",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> submitOrder(Order order) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        String orderId = this.orderService.submitOrder(order);
+        if (StringUtils.isEmpty(orderId)) {
+            // 提交订单失败
+            result.put("status", 300);
+        } else {
+            // 提交订单成功
+            result.put("status", 200);
+            result.put("data", orderId);
+        }
+        return result;
+    }
+
 //    @RequestMapping(value = "success", method = RequestMethod.GET)
 //    public ModelAndView success(@RequestParam("id") String orderId) {
 //        ModelAndView mv = new ModelAndView("success");
