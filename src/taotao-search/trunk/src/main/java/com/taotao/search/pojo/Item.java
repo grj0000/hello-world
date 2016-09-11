@@ -95,7 +95,7 @@ public class Item {
     public void setUpdated(Long updated) {
         this.updated = updated;
     }
-    
+    //为和页面中的多图片显示一致，添加以下方法
     public String[] getImages() {
         return StringUtils.split(this.getImage(), ',');
     }
