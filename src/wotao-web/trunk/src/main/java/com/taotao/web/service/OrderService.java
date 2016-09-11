@@ -45,16 +45,16 @@ public class OrderService {
         return null;
     }
 
-//    public Order queryOrderById(String orderId) {
-//        String url = TAOTAO_ORDER_URL + "/order/query/" + orderId;
-//        try {
-//            String jsonData = this.apiService.doGet(url);
-//            if (StringUtils.isNotEmpty(jsonData)) {
-//                return MAPPER.readValue(jsonData, Order.class);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    public Order queryOrderById(String orderId) {
+        String url = TAOTAO_ORDER_URL + "/order/query/" + orderId;
+        try {
+            String jsonData = this.apiService.doGet(url);
+            if (StringUtils.isNotEmpty(jsonData)) {
+                return MAPPER.readValue(jsonData, Order.class);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
