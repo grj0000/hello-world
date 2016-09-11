@@ -62,7 +62,7 @@
 <script type="text/javascript">
 //${paginator.totalPages}
 SEARCH.query = "${query}";
-SEARCH.bottom_page_html(${page},${pages},'');
+SEARCH.bottom_page_html(${page},${pages},'');//这里是做分页效果的，根据这个可以找到修改分页的思路
 </script>
 </body>
 </html>
