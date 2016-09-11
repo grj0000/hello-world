@@ -5773,6 +5773,7 @@ function cancelAllUsedGiftCards(giftCardType) {
 			cache : false,
 			success : function(result) {
 				if(result.status == 200){
+//					alert(JSON.stringify(result.data));
 					location.href = "/order/success.html?id="+result.data;
 				}else{
 					$("#submit_message").html("订单提交失败，请稍后重试...").show();
