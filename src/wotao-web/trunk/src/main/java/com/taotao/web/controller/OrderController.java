@@ -23,6 +23,7 @@ import com.taotao.web.handlerInterceptor.UserLoginHandlerInterceptor;
 import com.taotao.web.service.ItemService;
 import com.taotao.web.service.OrderService;
 import com.taotao.web.service.UserService;
+import com.taotao.web.threadlocal.UserThreadLocal;
 
 @RequestMapping("order")
 @Controller
@@ -36,16 +37,17 @@ public class OrderController {
 
     @Autowired
     private UserService userService;
-//
-//    @Autowired
-//    private CartService cartService;
+
+    //
+    // @Autowired
+    // private CartService cartService;
 
     /**
      * 去订单确认页
      * 
      * @return
      */
-    @RequestMapping(value = "{itemId}",method = RequestMethod.GET )
+    @RequestMapping(value = "{itemId}", method = RequestMethod.GET)
     public ModelAndView toOrder(@PathVariable("itemId") Long itemId) {
         ModelAndView mv = new ModelAndView("order");
         Item item = this.itemService.queryByItemId(itemId);
@@ -53,27 +55,24 @@ public class OrderController {
         return mv;
     }
 
-//    /**
-//     * 基于购物车下单
-//     * 
-//     * @return
-//     */
-//    @RequestMapping(value = "create", method = RequestMethod.GET)
-//    public ModelAndView toCartOrder() {
-//        ModelAndView mv = new ModelAndView("order-cart");
-//        User user = UserThreadLocal.get();
-//        List<Cart> carts = this.cartService.queryCartListByUserId(user.getId());
-//        mv.addObject("carts", carts);
-//        return mv;
-//    }
-//
-    @RequestMapping( value = "submit",method = RequestMethod.POST)
+    // /**
+    // * 基于购物车下单
+    // *
+    // * @return
+    // */
+    // @RequestMapping(value = "create", method = RequestMethod.GET)
+    // public ModelAndView toCartOrder() {
+    // ModelAndView mv = new ModelAndView("order-cart");
+    // User user = UserThreadLocal.get();
+    // List<Cart> carts = this.cartService.queryCartListByUserId(user.getId());
+    // mv.addObject("carts", carts);
+    // return mv;
+    // }
+    //
+    @RequestMapping(value = "submit", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> submitOrder(Order order, @CookieValue(UserLoginHandlerInterceptor.COOKIE_NAME)String token) {
+    public Map<String, Object> submitOrder(Order order) {
         Map<String, Object> result = new HashMap<String, Object>();
-        User user = this.userService.queryUserByToken(token);
-        order.setUserId(user.getId());
-       order.setBuyerNick(user.getUsername());
         String orderId = this.orderService.submitOrder(order);
         if (StringUtils.isEmpty(orderId)) {
             // 提交订单失败
@@ -86,14 +85,14 @@ public class OrderController {
         return result;
     }
 
-//    @RequestMapping(value = "success", method = RequestMethod.GET)
-//    public ModelAndView success(@RequestParam("id") String orderId) {
-//        ModelAndView mv = new ModelAndView("success");
-//        Order order = this.orderService.queryOrderById(orderId);
-//        mv.addObject("order", order);
-//        // 当前时间向后推2天，格式化：01月26日
-//        mv.addObject("date", new DateTime().plusDays(2).toString("MM月dd日"));
-//        return mv;
-//    }
+    // @RequestMapping(value = "success", method = RequestMethod.GET)
+    // public ModelAndView success(@RequestParam("id") String orderId) {
+    // ModelAndView mv = new ModelAndView("success");
+    // Order order = this.orderService.queryOrderById(orderId);
+    // mv.addObject("order", order);
+    // // 当前时间向后推2天，格式化：01月26日
+    // mv.addObject("date", new DateTime().plusDays(2).toString("MM月dd日"));
+    // return mv;
+    // }
 
 }
