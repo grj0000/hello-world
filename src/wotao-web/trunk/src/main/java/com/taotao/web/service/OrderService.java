@@ -11,6 +11,7 @@ import com.taotao.common.httpclient.HttpResult;
 import com.taotao.common.service.ApiService;
 import com.taotao.web.bean.Order;
 import com.taotao.web.bean.User;
+import com.taotao.web.threadlocal.UserThreadLocal;
 
 @Service
 public class OrderService {
@@ -24,9 +25,9 @@ public class OrderService {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     public String submitOrder(Order order) {
-//        User user = UserThreadLocal.get(); // 从本地线程中获取User对象
-//        order.setUserId(user.getId());
-//        order.setBuyerNick(user.getUsername());
+        User user = UserThreadLocal.get(); // 从本地线程中获取User对象
+        order.setUserId(user.getId());
+        order.setBuyerNick(user.getUsername());
         try {
             String url = TAOTAO_ORDER_URL + "/order/create";
             HttpResult httpResult = this.apiService.doPostJson(url, MAPPER.writeValueAsString(order));
