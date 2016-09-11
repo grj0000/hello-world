@@ -81,7 +81,7 @@
 			<artifactId>jedis</artifactId>
 			<version>2.6.0</version>
 		</dependency>
-		<!-- 时间操作组件,// 当前时间向后推2天，格式化：01月26日
+		<!-- 时间操作组件, 当前时间向后推2天，格式化：01月26日
      mv.addObject("date", new DateTime().plusDays(2).toString("MM月dd日")); -->
 		<dependency>
 			<groupId>joda-time</groupId>
