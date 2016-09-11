@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,8 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.taotao.web.bean.Item;
 import com.taotao.web.bean.Order;
+import com.taotao.web.bean.User;
+import com.taotao.web.handlerInterceptor.UserLoginHandlerInterceptor;
 import com.taotao.web.service.ItemService;
 import com.taotao.web.service.OrderService;
+import com.taotao.web.service.UserService;
 
 @RequestMapping("order")
 @Controller
@@ -29,9 +33,9 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
-//
-//    @Autowired
-//    private UserService userService;
+
+    @Autowired
+    private UserService userService;
 //
 //    @Autowired
 //    private CartService cartService;
@@ -65,8 +69,11 @@ public class OrderController {
 //
     @RequestMapping( value = "submit",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> submitOrder(Order order) {
+    public Map<String, Object> submitOrder(Order order, @CookieValue(UserLoginHandlerInterceptor.COOKIE_NAME)String token) {
         Map<String, Object> result = new HashMap<String, Object>();
+        User user = this.userService.queryUserByToken(token);
+        order.setUserId(user.getId());
+       order.setBuyerNick(user.getUsername());
         String orderId = this.orderService.submitOrder(order);
         if (StringUtils.isEmpty(orderId)) {
             // 提交订单失败
