@@ -12,6 +12,7 @@ import com.taotao.common.utils.CookieUtils;
 import com.taotao.web.bean.User;
 import com.taotao.web.service.PropertieService;
 import com.taotao.web.service.UserService;
+import com.taotao.web.threadlocal.UserThreadLocal;
 
 public class UserLoginHandlerInterceptor implements HandlerInterceptor {
 
@@ -27,7 +28,7 @@ public class UserLoginHandlerInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         
-//        UserThreadLocal.set(null);//清空当前线程中的User对象
+        UserThreadLocal.set(null);//清空当前线程中的User对象
         
         String loginUrl = propertieService.TAOTAO_SSO_URL + "/user/login.html";
         String token = CookieUtils.getCookieValue(request, COOKIE_NAME);
@@ -45,7 +46,7 @@ public class UserLoginHandlerInterceptor implements HandlerInterceptor {
         }
         //处于登录状态
         
-//        UserThreadLocal.set(user); //将User对象放置到ThreadLocal中
+        UserThreadLocal.set(user); //将User对象放置到ThreadLocal中
         return true;
     }
 
