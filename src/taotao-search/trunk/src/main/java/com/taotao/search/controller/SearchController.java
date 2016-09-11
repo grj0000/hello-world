@@ -22,7 +22,7 @@ public class SearchController {
             @RequestParam(value = "page", defaultValue = "1") Integer page) {
         ModelAndView mv = new ModelAndView("search");
         try {
-            //解决GET请求中文乱码问题
+            //解决GET请求中文乱码问题，
             keyWords = new String(keyWords.getBytes("ISO-8859-1"), "UTF-8");
             
             // 搜索商品
