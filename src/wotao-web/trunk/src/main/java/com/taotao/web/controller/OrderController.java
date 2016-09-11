@@ -85,14 +85,14 @@ public class OrderController {
         return result;
     }
 
-    // @RequestMapping(value = "success", method = RequestMethod.GET)
-    // public ModelAndView success(@RequestParam("id") String orderId) {
-    // ModelAndView mv = new ModelAndView("success");
-    // Order order = this.orderService.queryOrderById(orderId);
-    // mv.addObject("order", order);
-    // // 当前时间向后推2天，格式化：01月26日
-    // mv.addObject("date", new DateTime().plusDays(2).toString("MM月dd日"));
-    // return mv;
-    // }
+     @RequestMapping(value = "success", method = RequestMethod.GET)
+     public ModelAndView success(@RequestParam("id") String orderId) {
+     ModelAndView mv = new ModelAndView("success");
+     Order order = this.orderService.queryOrderById(orderId);
+     mv.addObject("order", order);
+     // 当前时间向后推2天，格式化：01月26日
+     mv.addObject("date", new DateTime().plusDays(2).toString("MM月dd日"));
+     return mv;
+     }
 
 }
