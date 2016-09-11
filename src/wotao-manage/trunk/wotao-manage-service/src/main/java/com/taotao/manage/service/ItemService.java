@@ -1,18 +1,20 @@
 package com.taotao.manage.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.taotao.common.bean.EasyUIResult;
 import com.taotao.manage.mapper.ItemMapper;
 import com.taotao.manage.pojo.Item;
 import com.taotao.manage.pojo.ItemDesc;
-import com.taotao.manage.pojo.ItemParam;
 import com.taotao.manage.pojo.ItemParamItem;
 
 @Service
@@ -26,6 +28,11 @@ public class ItemService extends BaseService<Item>{
     
     @Autowired
     private ItemMapper itemMapper;
+    
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+    
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     
     public void save(Item item, String desc, String itemParams) {
 
@@ -47,6 +54,9 @@ public class ItemService extends BaseService<Item>{
         itemParamItem.setParamData(itemParams);
         
         this.itemParamItemService.save(itemParamItem);
+        
+     // 发送消息
+        sendMsg(item.getId(), "insert");
     }
 
     public PageInfo<Item> queryItemList(Integer page, Integer rows) {
@@ -72,6 +82,21 @@ public class ItemService extends BaseService<Item>{
             this.itemDescService.updateSelective(itemDesc);
             
             this.itemParamItemService.updateItemParamItem(item.getId(),itemParams);
+            
+            // 发送消息
+            sendMsg(item.getId(), "update");
     }
 
+        private void sendMsg(Long itemId, String type) {
+            try {
+                // 发送MQ消息通知其他系统
+                Map<String, Object> msg = new HashMap<String, Object>();
+                msg.put("itemId", itemId);
+                msg.put("type", type);
+                msg.put("date", System.currentTimeMillis());
+                this.rabbitTemplate.convertAndSend("item." + type, MAPPER.writeValueAsString(msg));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 }
