@@ -22,11 +22,11 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
-<!-- 	<mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/cart/**"/>
 			<bean class="com.taotao.cart.handlerInterceptor.UserHandlerInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 
 </beans>
