@@ -20,7 +20,7 @@
 				<value>classpath:env.properties</value>
 				<value>classpath:httpclient.properties</value>
 				<value>classpath:solr.properties</value>
-<!-- 				<value>classpath:rabbitmq.properties</value> -->
+				<value>classpath:rabbitmq.properties</value>
 			</list>
 		</property>
 	</bean>
