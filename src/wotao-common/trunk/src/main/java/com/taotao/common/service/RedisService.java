@@ -28,6 +28,16 @@ public class RedisService {
 		}
 		return null;
 	}
+	
+	public Boolean exist(final String key) {
+            return this.excute(new Function<Boolean, ShardedJedis>() {
+
+                    @Override
+                    public Boolean callback(ShardedJedis e) {
+                            return e.exists(key);
+                    }
+            });
+    }
 
 	public String set(final String key, final String value) {
 		return this.excute(new Function<String, ShardedJedis>() {
