@@ -107,6 +107,9 @@ public class ItemService {
 	        try {
 	            String url = TAOTAO_MANAGE_URL + "/rest/item/param/item/" + itemId;
 	            String jsonData = this.apiService.doGet(url);
+	            if(StringUtils.isEmpty(jsonData)){
+	                return null;
+	            }
 	            // 解析JSON
 	            JsonNode jsonNode = MAPPER.readTree(jsonData);
 	            ArrayNode paramData = (ArrayNode) MAPPER.readTree(jsonNode.get("paramData").asText());
