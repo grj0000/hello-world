@@ -89,7 +89,7 @@ public class ItemService extends BaseService<Item>{
 
         private void sendMsg(Long itemId, String type) {
             try {
-                // 发送MQ消息通知其他系统
+                // 发送MQ消息通知其他系统，家里电脑问题或者是检出的时候出问题，导致没有创建交换，换电脑，重新检出项目就好了
                 Map<String, Object> msg = new HashMap<String, Object>();
                 msg.put("itemId", itemId);
                 msg.put("type", type);
