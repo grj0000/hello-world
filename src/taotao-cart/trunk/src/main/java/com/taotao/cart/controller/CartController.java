@@ -62,19 +62,19 @@ public class CartController {
      * @param userId
      * @return
      */
-//    @RequestMapping(method = RequestMethod.GET, params = "userId")
-//    public ResponseEntity<List<Cart>> queryCartListByUserId(@RequestParam("userId") Long userId) {
-//        try {
-//            List<Cart> carts = this.cartService.queryCartList(userId);
-//            if (null == carts || carts.isEmpty()) {
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-//            }
-//            return ResponseEntity.ok(carts);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-//    }
+    @RequestMapping(method = RequestMethod.GET, params = "userId")
+    public ResponseEntity<List<Cart>> queryCartListByUserId(@RequestParam("userId") Long userId) {
+        try {
+            List<Cart> carts = this.cartService.queryCartList(userId);
+            if (null == carts || carts.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+            return ResponseEntity.ok(carts);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
 
     /**
      * 显示购物车列表
