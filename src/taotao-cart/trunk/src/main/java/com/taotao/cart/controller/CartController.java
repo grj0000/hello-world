@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.taotao.cart.bean.User;
 import com.taotao.cart.pojo.Cart;
+import com.taotao.cart.service.CartCookieService;
 import com.taotao.cart.service.CartService;
 import com.taotao.cart.threadLocal.UserThreadLocal;
 
@@ -27,8 +28,8 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-//    @Autowired
-//    private CartCookieService cartCookieService;
+    @Autowired
+    private CartCookieService cartCookieService;
 
     /**
      * 加入商品到购物车
@@ -46,7 +47,7 @@ public class CartController {
         User user = UserThreadLocal.get();
         if (null == user) {
             // 未登录状态
-//            this.cartCookieService.addItemToCart(itemId, request, response);
+            this.cartCookieService.addItemToCart(itemId, request, response);
         } else {
             // 登录状态
             this.cartService.addItemToCart(itemId);
@@ -87,7 +88,7 @@ public class CartController {
         User user = UserThreadLocal.get();
         if (null == user) {
             // 未登录状态
-//            cartList = this.cartCookieService.queryCartList(request);
+            cartList = this.cartCookieService.queryCartList(request);
         } else {
             // 登录状态
             cartList = this.cartService.queryCartList();
@@ -109,7 +110,7 @@ public class CartController {
         User user = UserThreadLocal.get();
         if (null == user) {
             // 未登录状态
-//            this.cartCookieService.updateNum(itemId, num, request, response);
+            this.cartCookieService.updateNum(itemId, num, request, response);
         } else {
             // 登录状态
             this.cartService.updateNum(itemId, num);
@@ -130,7 +131,7 @@ public class CartController {
         User user = UserThreadLocal.get();
         if (null == user) {
             // 未登录状态
-//            this.cartCookieService.deleteItem(itemId, request, response);
+            this.cartCookieService.deleteItem(itemId, request, response);
         } else {
             // 登录状态
             this.cartService.deleteItem(itemId);
