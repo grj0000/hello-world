@@ -68,19 +68,19 @@ public class CartService {
         return this.cartMapper.selectByExample(example);
     }
 
-//    public void updateNum(Long itemId, Integer num) {
-//        User user = UserThreadLocal.get();
-//        // 更新的数据对象
-//        Cart record = new Cart();
-//        record.setNum(num);
-//        record.setUpdated(new Date());
-//
-//        // 更新的条件
-//        Example example = new Example(Cart.class);
-//        example.createCriteria().andEqualTo("itemId", itemId).andEqualTo("userId", user.getId());
-//        this.cartMapper.updateByExampleSelective(record, example);
-//    }
-//
+    public void updateNum(Long itemId, Integer num) {
+        User user = UserThreadLocal.get();
+        // 更新的数据对象
+        Cart record = new Cart();
+        record.setNum(num);
+        record.setUpdated(new Date());
+
+        // 更新的条件
+        Example example = new Example(Cart.class);
+        example.createCriteria().andEqualTo("itemId", itemId).andEqualTo("userId", user.getId());
+        this.cartMapper.updateByExampleSelective(record, example);
+    }
+
 //    public void deleteItem(Long itemId) {
 //        Cart record = new Cart();
 //        record.setUserId(UserThreadLocal.get().getId());
