@@ -103,20 +103,20 @@ public class CartController {
      * @param num 最终购买的数量
      * @return
      */
-//    @RequestMapping(value = "update/num/{itemId}/{num}", method = RequestMethod.POST)
-//    public ResponseEntity<Void> updateNum(@PathVariable("itemId") Long itemId,
-//            @PathVariable("num") Integer num, HttpServletRequest request, HttpServletResponse response) {
-//        User user = UserThreadLocal.get();
-//        if (null == user) {
-//            // 未登录状态
+    @RequestMapping(value = "update/num/{itemId}/{num}", method = RequestMethod.POST)
+    public ResponseEntity<Void> updateNum(@PathVariable("itemId") Long itemId,
+            @PathVariable("num") Integer num, HttpServletRequest request, HttpServletResponse response) {
+        User user = UserThreadLocal.get();
+        if (null == user) {
+            // 未登录状态
 //            this.cartCookieService.updateNum(itemId, num, request, response);
-//        } else {
-//            // 登录状态
-//            this.cartService.updateNum(itemId, num);
-//        }
-//        // 204
-//        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-//    }
+        } else {
+            // 登录状态
+            this.cartService.updateNum(itemId, num);
+        }
+        // 204
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
     /**
      * 删除购物车中的商品
