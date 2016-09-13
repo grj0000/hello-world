@@ -34,7 +34,7 @@ var TTCart = {
 			var _this = $(e);
 			total += (eval(_this.attr("itemPrice")) * 10000 * eval(_this.val())) / 10000;
 		});
-		$(".totalSkuPrice").html(new Number(total/100).toFixed(2)).priceFormat({ //价格格式化插件
+		$(".totalSkuPrice").html(new Number(total/100).toFixed(2)).priceFormat({ //价格格式化插件，在jquery.price_format.2.0.min.js中有定义
 			 prefix: '￥',
 			 thousandsSeparator: ',',
 			 centsLimit: 2
