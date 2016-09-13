@@ -44,6 +44,7 @@
 		<servlet-name>taotao-cart</servlet-name>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
+	<!-- 因为购物车数量变化要传递json数据，详见cart.js中的itemNumChange方法定义 -->
 	<servlet-mapping>
 		<servlet-name>taotao-cart</servlet-name>
 		<url-pattern>/service/*</url-pattern>
