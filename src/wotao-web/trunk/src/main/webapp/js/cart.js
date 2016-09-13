@@ -22,7 +22,7 @@ var TTCart = {
 		});
 		$(".quantity-form .quantity-text").rnumber(1);//限制只能输入数字，此方法在jquery-extend.js中有定义
 		$(".quantity-form .quantity-text").change(function(){
-			var _thisInput = $(this);
+			var _thisInput = $(this);//当$(".quantity-form .quantity-text")发生变化时触发此函数
 			$.post("/service/cart/update/num/"+_thisInput.attr("itemId")+"/"+_thisInput.val(),function(data){
 				TTCart.refreshTotalPrice();
 			});
