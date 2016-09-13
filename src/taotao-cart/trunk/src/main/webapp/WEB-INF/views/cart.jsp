@@ -121,7 +121,7 @@
           </div>
           <div class="cart-total-2014">
               <div class="cart-button">
-                  <span class="check-comm-btns" id="checkout-jd">
+                  <span class="check-comm-btns" id="checkout-jd"><!-- TODO：打勾总价变化问题，跳转到订单确认页面要是打勾的商品才行 -->
                       <a class="checkout" href="http://www.taotao.com/order/create.html" clstag="clickcart|keycount|xincart|gotoOrderInfo" id="toSettlement">去结算<b></b></a>
                   </span>
                   <span class="combine-btns" style="display:none">
