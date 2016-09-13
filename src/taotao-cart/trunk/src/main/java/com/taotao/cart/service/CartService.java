@@ -81,11 +81,11 @@ public class CartService {
         this.cartMapper.updateByExampleSelective(record, example);
     }
 
-//    public void deleteItem(Long itemId) {
-//        Cart record = new Cart();
-//        record.setUserId(UserThreadLocal.get().getId());
-//        record.setItemId(itemId);
-//        this.cartMapper.delete(record);
-//    }
+    public void deleteItem(Long itemId) {
+        Cart record = new Cart();
+        record.setUserId(UserThreadLocal.get().getId());
+        record.setItemId(itemId);
+        this.cartMapper.delete(record);
+    }
 
 }
