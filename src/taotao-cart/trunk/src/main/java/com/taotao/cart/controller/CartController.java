@@ -124,18 +124,18 @@ public class CartController {
      * @param itemId
      * @return
      */
-//    @RequestMapping(value = "delete/{itemId}", method = RequestMethod.GET)
-//    public String deleteItem(@PathVariable("itemId") Long itemId, HttpServletRequest request,
-//            HttpServletResponse response) {
-//        User user = UserThreadLocal.get();
-//        if (null == user) {
-//            // 未登录状态
+    @RequestMapping(value = "delete/{itemId}", method = RequestMethod.GET)
+    public String deleteItem(@PathVariable("itemId") Long itemId, HttpServletRequest request,
+            HttpServletResponse response) {
+        User user = UserThreadLocal.get();
+        if (null == user) {
+            // 未登录状态
 //            this.cartCookieService.deleteItem(itemId, request, response);
-//        } else {
-//            // 登录状态
-//            this.cartService.deleteItem(itemId);
-//        }
-//        // 重定向到购物车列表页面
-//        return "redirect:/cart/list.html";
-//    }
+        } else {
+            // 登录状态
+            this.cartService.deleteItem(itemId);
+        }
+        // 重定向到购物车列表页面
+        return "redirect:/cart/list.html";
+    }
 }
