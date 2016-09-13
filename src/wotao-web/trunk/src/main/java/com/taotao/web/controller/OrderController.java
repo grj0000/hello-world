@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.taotao.web.bean.Cart;
 import com.taotao.web.bean.Item;
 import com.taotao.web.bean.Order;
 import com.taotao.web.bean.User;
 import com.taotao.web.handlerInterceptor.UserLoginHandlerInterceptor;
+import com.taotao.web.service.CartService;
 import com.taotao.web.service.ItemService;
 import com.taotao.web.service.OrderService;
 import com.taotao.web.service.UserService;
@@ -38,12 +40,12 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
-    //
-    // @Autowired
-    // private CartService cartService;
+    
+     @Autowired
+     private CartService cartService;
 
     /**
-     * 去订单确认页
+     * 去订单确认页，原来的单商品下单，TODO:可在商品页面加入购物车旁边添加一个按钮：立即购买，然后指向这个controller的方法
      * 
      * @return
      */
@@ -55,20 +57,20 @@ public class OrderController {
         return mv;
     }
 
-    // /**
-    // * 基于购物车下单
-    // *
-    // * @return
-    // */
-    // @RequestMapping(value = "create", method = RequestMethod.GET)
-    // public ModelAndView toCartOrder() {
-    // ModelAndView mv = new ModelAndView("order-cart");
-    // User user = UserThreadLocal.get();
-    // List<Cart> carts = this.cartService.queryCartListByUserId(user.getId());
-    // mv.addObject("carts", carts);
-    // return mv;
-    // }
-    //
+     /**
+     * 基于购物车下单，目前只实现了购物车所有商品都下单，TODO：改为只有打勾的商品才下单
+     *
+     * @return
+     */
+     @RequestMapping(value = "create", method = RequestMethod.GET)
+     public ModelAndView toCartOrder() {
+     ModelAndView mv = new ModelAndView("order-cart");
+     User user = UserThreadLocal.get();
+     List<Cart> carts = this.cartService.queryCartListByUserId(user.getId());
+     mv.addObject("carts", carts);
+     return mv;
+     }
+    
     @RequestMapping(value = "submit", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> submitOrder(Order order) {
