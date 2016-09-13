@@ -5,7 +5,7 @@ var TTCart = {
 	itemNumChange : function(){
 		$(".increment").click(function(){//＋
 			var _thisInput = $(this).siblings("input");
-			_thisInput.val(eval(_thisInput.val()) + 1);
+			_thisInput.val(eval(_thisInput.val()) + 1);//_thisInput.val()是最终购买数量
 			$.post("/service/cart/update/num/"+_thisInput.attr("itemId")+"/"+_thisInput.val(),function(data){
 				TTCart.refreshTotalPrice();
 			});
@@ -24,7 +24,7 @@ var TTCart = {
 		$(".quantity-form .quantity-text").change(function(){
 			var _thisInput = $(this);//当$(".quantity-form .quantity-text")发生变化时触发此函数
 			$.post("/service/cart/update/num/"+_thisInput.attr("itemId")+"/"+_thisInput.val(),function(data){
-				TTCart.refreshTotalPrice();
+				TTCart.refreshTotalPrice();//_thisInput.attr("itemId")是商品id，_thisInput.val()是最终购买数量
 			});
 		});
 	},
