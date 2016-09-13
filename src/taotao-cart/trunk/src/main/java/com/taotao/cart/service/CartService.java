@@ -60,7 +60,7 @@ public class CartService {
         User user = UserThreadLocal.get();
         return this.queryCartList(user.getId());
     }
-
+    //配合前台系统的需求根据用户id查询购物车list
     public List<Cart> queryCartList(Long userId) {
         Example example = new Example(Cart.class);
         example.createCriteria().andEqualTo("userId", userId);
